@@ -9,7 +9,7 @@ Features:
 
 Content Creation:
 - Photography and image editing using Adobe Creative Suite
-- Web copy writing and
+- Web copy
 
 Features I'm building:
 - JavaScript lazy loading
