@@ -34,7 +34,6 @@ const imgEnlarge = imgArr.forEach(el =>
         curIndex--;
       }
       modalImg.src = `/resources/img/lightbox/${curIndex + 1}.jpg`;
-      console.log(modalImg.src);
     };
     scrollBtnRight.addEventListener('click', function (e) {
       updateCurIndex('right');
