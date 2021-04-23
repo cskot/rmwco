@@ -51,6 +51,17 @@
       content="/resources/favicons/browserconfig.xml"
     />
     <meta name="theme-color" content="#fbfbfb" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"
+      defer
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
+      defer
+    ></script>
+    <script src="resources/js/aws.js" defer></script>
     <script src="script.js" defer></script>
     <title>RMWCO, Inc.</title>
   </head>
@@ -460,13 +471,18 @@
         </div>
       </div>
     </footer>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule=""
-      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
-    ></script>
+    <form>
+      <label>First Name :</label>
+      <input type="text" id="fName" />
+      <label>Last Name :</label>
+      <input type="text" id="lName" />
+      <!-- set button onClick method to call function we defined passing input values as parameters -->
+      <button
+        type="button"
+        onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)"
+      >
+        Call API
+      </button>
+    </form>
   </body>
 </html>
