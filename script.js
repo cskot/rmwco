@@ -14,33 +14,47 @@ let currentIndex, currentImage;
 
 const imageEnlarge = () => {
   modal.style.display = 'block';
-  modalImg.src = `/resources/img/lightbox/${currentIndex + 1}.jpg`;
+  modalImg.src = `/resources/img/lightbox/${currentIndex}.jpg`;
   currentImage.style.display = 'none'; // fixes bug where small img pops thru modal because of stacking context issues
 };
 // Update Index
 
 const updateIndex = function (type) {
-  if (type === 'left') {
+  if (type === 'left' && currentIndex > 1) {
     currentIndex--;
+    scrollBtnRight.classList.add('arrow');
   }
 
-  if (type === 'right') {
+  if (type === 'right' && currentIndex < imgArr.length) {
     currentIndex++;
+    scrollBtnLeft.classList.add('arrow');
   }
-  modalImg.src = `/resources/img/lightbox/${currentIndex + 1}.jpg`;
+
+  if (currentIndex === 1) {
+    console.log('First image with fan');
+    scrollBtnLeft.classList.remove('arrow');
+  }
+  if (currentIndex === imgArr.length) {
+    console.log('last image with red grass');
+    scrollBtnRight.classList.remove('arrow');
+  }
+  modalImg.src = `/resources/img/lightbox/${currentIndex}.jpg`;
 };
 
 // Close Modal
 const closeModal = function () {
+  currentIndex - 1;
   modal.style.display = 'none';
   currentImage.style.display = '';
+  updateIndex();
 };
 
 // ----- Event Listeners -----
 // imgArr clicks
 imgArr.forEach((e, index) =>
   e.addEventListener('click', function (e) {
-    currentIndex = index;
+    currentIndex = index + 1;
+    updateIndex();
     currentImage = e.target;
     imageEnlarge();
     //imageEnlarge(e.target, index);
