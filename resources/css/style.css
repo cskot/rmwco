@@ -242,7 +242,7 @@ input[type='submit']:hover {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 10; /* Sit on top */
-  padding-top: 30px; /* Location of the box */
+  padding-top: 5%; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -254,7 +254,7 @@ input[type='submit']:hover {
 .modal-content {
   margin: auto;
   display: block;
-  width: 70%;
+  width: 85%;
   max-width: 1200px;
 }
 .close {
@@ -275,7 +275,7 @@ input[type='submit']:hover {
 @media only screen and (max-width: 700px) {
   .modal-content {
     width: 100%;
-    padding-top: 25%;
+    padding-top: 0;
   }
 }
 .arrow {

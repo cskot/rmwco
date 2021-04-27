@@ -18,24 +18,19 @@ const imageEnlarge = () => {
   currentImage.style.display = 'none'; // fixes bug where small img pops thru modal because of stacking context issues
 };
 // Update Index
-
 const updateIndex = function (type) {
   if (type === 'left' && currentIndex > 1) {
     currentIndex--;
     scrollBtnRight.classList.add('arrow');
   }
-
   if (type === 'right' && currentIndex < imgArr.length) {
     currentIndex++;
     scrollBtnLeft.classList.add('arrow');
   }
-
   if (currentIndex === 1) {
-    console.log('First image with fan');
     scrollBtnLeft.classList.remove('arrow');
   }
   if (currentIndex === imgArr.length) {
-    console.log('last image with red grass');
     scrollBtnRight.classList.remove('arrow');
   }
   modalImg.src = `/resources/img/lightbox/${currentIndex}.jpg`;
@@ -44,9 +39,9 @@ const updateIndex = function (type) {
 // Close Modal
 const closeModal = function () {
   currentIndex - 1;
+  updateIndex();
   modal.style.display = 'none';
   currentImage.style.display = '';
-  updateIndex();
 };
 
 // ----- Event Listeners -----
@@ -85,57 +80,7 @@ modal.addEventListener('click', function (e) {
 // Keydown events
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') closeModal();
-  else if (e.key === 'ArrowRight') updateIndex('right');
-  else if (e.key === 'ArrowLeft') updateIndex('left');
+  else if (e.key === 'ArrowRight' && currentIndex < imgArr.length)
+    updateIndex('right');
+  else if (e.key === 'ArrowLeft' && currentIndex > 1) updateIndex('left');
 });
-
-// const imgEnlarge = function (image) {
-//   // SET VARIABLES
-//   let curIndex = imgArr.findIndex(el => el === curImg);
-
-//   // MODAL DISPLAY INIT
-//   modal.style.display = 'block';
-//   modalImg.src = `/resources/img/lightbox/${curIndex + 1}.jpg`;
-//   image.style.display = 'none';
-
-//   // SCROLL MODAL
-//   const updateCurIndex = function (index) {
-//     if (index <= imgArr.length - 1 && e === 'right') {
-//       curIndex++;
-//     } else if (curIndex > 0 && e === 'left') {
-//       curIndex--;
-//     }
-//     modalImg.src = `/resources/img/lightbox/${curIndex + 1}.jpg`;
-//     console.log(curIndex);
-//   };
-
-//   scrollBtnRight.addEventListener('click', function (e) {
-//     updateCurIndex('right');
-//   });
-//   scrollBtnLeft.addEventListener('click', function (e) {
-//     updateCurIndex('left');
-//   });
-//   document.addEventListener('keydown', function (e) {
-//     if (e.key === 'Escape') closeModal();
-//     else if (e.key === 'ArrowRight') updateCurIndex('right');
-//     else if (e.key === 'ArrowLeft') updateCurIndex('left');
-//   });
-
-//   // CLOSE MODAL
-//   const closeModal = function () {
-//     modal.style.display = 'none';
-//     curImg.style.display = '';
-//     imgArr.forEach(el => el.removeEventListener('click', imgEnlarge));
-//   };
-//   closeBtn.addEventListener('click', function () {
-//     closeModal();
-//   });
-//   modal.addEventListener('click', function (e) {
-//     if (
-//       e.target !== scrollBtnRight &&
-//       e.target !== scrollBtnLeft &&
-//       e.target.classList.value !== 'modal-content'
-//     )
-//       closeModal();
-//   });
-// };
